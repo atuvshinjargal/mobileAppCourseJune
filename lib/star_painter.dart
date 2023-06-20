@@ -32,3 +32,6 @@ class StarPainter extends CustomPainter{
     return false;
   }
 }
+// git add .
+// git commit -m "tailbar"
+// git push -u origin main
