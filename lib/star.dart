@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'star_painter.dart';
 class Star extends StatelessWidget {
   final double size; //double gedeg n butarthai too 37.5 geh met
   final Color color; //Ungu jisheen RGB(255,124,65)
@@ -15,7 +15,7 @@ class Star extends StatelessWidget {
       width: size,
       height: size,
       child: CustomPaint(
-        painter: _StarPainter(),
+        painter: StarPainter(color),
       ),
     );
   }
