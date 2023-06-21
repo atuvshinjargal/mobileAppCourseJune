@@ -11,10 +11,14 @@ class CategoryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: color,
-      child: Center(
-        child: Text(text),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 100,
+        color: color,
+        child: Center(
+          child: Text(text),
+        ),
       ),
     );
   }

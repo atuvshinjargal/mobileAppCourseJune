@@ -80,7 +80,25 @@ class ECommerceScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: CategoryBox(
+                    text: 'Must buy in Summer',
+                    color: Colors.green,
+                  ),
+                ),
+                Flexible(
+                  flex:1,
+                  child: CategoryBox(
+                    text: 'Last Chance',
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
