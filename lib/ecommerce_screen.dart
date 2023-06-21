@@ -58,6 +58,9 @@ class ECommerceScreen extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              child: Image.asset('assets/women.jpg'),
             )
           ],
         ),
