@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:profile_app/star.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -41,6 +42,15 @@ class ProfileScreen extends StatelessWidget {
               fontSize: 35,
               fontWeight: FontWeight.w600,
             ),
+          ),
+          Row(
+            children: [
+              Star(color: Colors.red, size: 40),
+              Star(color: Colors.brown, size: 40),
+              Star(color: Colors.black, size: 40),
+              Star(color: Colors.red, size: 40),
+              Star(color: Colors.red, size: 40),
+            ],
           ),
           _buildDetialsRow('AGE', '15'),
         ],
