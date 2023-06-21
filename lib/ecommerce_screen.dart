@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:profile_app/category_box.dart';
 
 class ECommerceScreen extends StatelessWidget {
   const ECommerceScreen({super.key});
@@ -61,6 +62,24 @@ class ECommerceScreen extends StatelessWidget {
             ),
             SizedBox(
               child: Image.asset('assets/women.jpg'),
+            ),
+            Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: CategoryBox(
+                    text: 'Best Sellers',
+                    color: Colors.orange,
+                  ),
+                ),
+                Flexible(
+                  flex:1,
+                  child: CategoryBox(
+                    text: 'Daily Deals',
+                    color: Colors.blue,
+                  ),
+                ),
+              ],
             )
           ],
         ),
