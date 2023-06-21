@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:profile_app/deep_tree.dart';
+import 'package:profile_app/ecommerce_screen.dart';
 import 'package:profile_app/flex_screen.dart';
 import 'package:profile_app/profile_screen.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: Colors.green,
       ),
-      home: DeepTree(),//ProfileScreen(),//FlexScreen(),
+      home: ECommerceScreen(),//DeepTree(),//ProfileScreen(),//FlexScreen(),
     );
   }
 }
