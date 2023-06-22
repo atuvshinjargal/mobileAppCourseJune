@@ -17,11 +17,11 @@ class _StopWatchState extends State<StopWatch> {
   @override
   void initState() {
     seconds = 0;
-    timer = Timer.periodic(Duration(milliseconds: 10), (timer) {
+    timer = Timer.periodic(Duration(milliseconds: 1), (timer) {
       setState(
         () {
           if (isTicking == true) {
-            seconds = seconds + 0.01; //seconds = seconds + 1;
+            seconds = seconds + 0.001; //seconds = seconds + 1;
           }
         },
       );
@@ -46,7 +46,7 @@ class _StopWatchState extends State<StopWatch> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '${seconds.toStringAsFixed(2)} second',
+              '${seconds.toStringAsFixed(3)} second',
               style: Theme.of(context).textTheme.headline1,
             ),
             Row(
