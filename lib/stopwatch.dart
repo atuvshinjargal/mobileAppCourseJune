@@ -78,6 +78,7 @@ class _StopWatchState extends State<StopWatch> {
                     isTicking = false;
                     setState(() {
                       seconds = 0;
+                      laps.clear();
                     });
                   },
                   child: Text('Restart'),
@@ -99,7 +100,7 @@ class _StopWatchState extends State<StopWatch> {
                     children: [
                       for(double lap in laps)
                         ListTile(
-                          title: Text('$lap'),
+                          title: Text('${lap.toStringAsFixed(3)}'),
                         ),
                     ],
                   ),
