@@ -46,54 +46,63 @@ class _StopWatchState extends State<StopWatch> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              '${seconds.toStringAsFixed(3)} second',
-              style: Theme.of(context).textTheme.headline1,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    isTicking = true;
-                  },
-                  child: Text('Start'),
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.red),
+            Container(
+              color: Colors.blue,
+              height: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '${seconds.toStringAsFixed(3)} second',
+                    style: Theme.of(context).textTheme.headline3,
                   ),
-                  onPressed: () {
-                    isTicking = false;
-                  },
-                  child: Text('Stop'),
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.green),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          isTicking = true;
+                        },
+                        child: Text('Start'),
+                      ),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.red),
+                        ),
+                        onPressed: () {
+                          isTicking = false;
+                        },
+                        child: Text('Stop'),
+                      ),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.green),
+                        ),
+                        onPressed: () {
+                          isTicking = false;
+                          setState(() {
+                            seconds = 0;
+                            laps.clear();
+                          });
+                        },
+                        child: Text('Restart'),
+                      ),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.purple),
+                        ),
+                        onPressed: () {
+                          laps.add(seconds);
+                        },
+                        child: Text('Lap'),
+                      ),
+                    ],
                   ),
-                  onPressed: () {
-                    isTicking = false;
-                    setState(() {
-                      seconds = 0;
-                      laps.clear();
-                    });
-                  },
-                  child: Text('Restart'),
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.purple),
-                  ),
-                  onPressed: () {
-                    laps.add(seconds);
-                  },
-                  child: Text('Lap'),
-                ),
-              ],
+                ],
+              ),
             ),
             Expanded(
                   child: ListView(
