@@ -13,6 +13,7 @@ class _StopWatchState extends State<StopWatch> {
       seconds; //int gedeg buhel too (-1,0,1 .....) //late daraa n utga uguh
   late Timer timer;
   bool isTicking = false;
+  final laps = <double>[];
 
   @override
   void initState() {
@@ -81,8 +82,28 @@ class _StopWatchState extends State<StopWatch> {
                   },
                   child: Text('Restart'),
                 ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.purple),
+                  ),
+                  onPressed: () {
+                    laps.add(seconds);
+                  },
+                  child: Text('Lap'),
+                ),
               ],
-            )
+            ),
+            Expanded(
+                  child: ListView(
+                    children: [
+                      for(double lap in laps)
+                        ListTile(
+                          title: Text('$lap'),
+                        ),
+                    ],
+                  ),
+                ),
           ],
         ),
       ),
