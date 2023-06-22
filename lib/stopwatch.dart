@@ -9,20 +9,29 @@ class StopWatch extends StatefulWidget {
 }
 
 class _StopWatchState extends State<StopWatch> {
-  late int seconds; //int gedeg buhel too (-1,0,1 .....) //late daraa n utga uguh
+  late int
+      seconds; //int gedeg buhel too (-1,0,1 .....) //late daraa n utga uguh
   late Timer timer;
 
   @override
   void initState() {
     seconds = 0;
-    timer = Timer.periodic(Duration(seconds: 1), (timer) { 
-      setState(() {
-        seconds++; //seconds = seconds + 1;
-      },);
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(
+        () {
+          if (seconds < 10) {
+            seconds++; //seconds = seconds + 1;
+          }
+        },
+      );
     });
     super.initState();
   }
-
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
