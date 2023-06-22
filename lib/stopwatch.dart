@@ -9,7 +9,7 @@ class StopWatch extends StatefulWidget {
 }
 
 class _StopWatchState extends State<StopWatch> {
-  late int
+  late double
       seconds; //int gedeg buhel too (-1,0,1 .....) //late daraa n utga uguh
   late Timer timer;
   bool isTicking = false;
@@ -17,11 +17,11 @@ class _StopWatchState extends State<StopWatch> {
   @override
   void initState() {
     seconds = 0;
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(Duration(milliseconds: 10), (timer) {
       setState(
         () {
           if (isTicking == true) {
-            seconds++; //seconds = seconds + 1;
+            seconds = seconds + 0.01; //seconds = seconds + 1;
           }
         },
       );
@@ -46,7 +46,7 @@ class _StopWatchState extends State<StopWatch> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '$seconds second',
+              '${seconds.toStringAsFixed(2)} second',
               style: Theme.of(context).textTheme.headline1,
             ),
             Row(
@@ -67,6 +67,19 @@ class _StopWatchState extends State<StopWatch> {
                     isTicking = false;
                   },
                   child: Text('Stop'),
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.green),
+                  ),
+                  onPressed: () {
+                    isTicking = false;
+                    setState(() {
+                      seconds = 0;
+                    });
+                  },
+                  child: Text('Restart'),
                 ),
               ],
             )
