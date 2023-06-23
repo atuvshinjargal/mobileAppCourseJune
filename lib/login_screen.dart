@@ -13,6 +13,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+  String gender = 'Male';
 
   void _validate() {
     final form = _formkey.currentState;
@@ -80,6 +81,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 return null;
               },
             ),
+            DropdownButton(
+              value:gender,
+              items: [
+                DropdownMenuItem(value: 'Male',child: Text('Male'),),
+                DropdownMenuItem(value:'Female',child: Text('Female'),),
+              ],
+               onChanged: (String? newValue) {
+                setState(() {
+                  gender = newValue!;
+                });
+               },
+              ),
             SizedBox(
               height: 20,
             ),
