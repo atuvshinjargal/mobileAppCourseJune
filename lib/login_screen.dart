@@ -14,9 +14,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
 
-  void _validate(){
+  void _validate() {
     final form = _formkey.currentState;
-    if (!form!.validate()){
+    if (!form!.validate()) {
       return;
     }
     setState(() {
@@ -70,18 +70,23 @@ class _LoginScreenState extends State<LoginScreen> {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(labelText: 'Email'),
               validator: (value) {
-                 if (value!.isEmpty){
+                if (value!.isEmpty) {
                   return 'Enter the runner\'s email.';
-                 }
-                 final regex = RegExp('[^@]+@[^\.]+\..+');
-                 if (!regex.hasMatch(value)){
+                }
+                final regex = RegExp('[^@]+@[^\.]+\..+');
+                if (!regex.hasMatch(value)) {
                   return 'Enter the valid email.';
-                 }
-                 return null;
+                }
+                return null;
               },
             ),
-            SizedBox(height: 20,),
-            ElevatedButton(onPressed: _validate, child: Text('Continue'),),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: _validate,
+              child: Text('Continue'),
+            ),
           ],
         ),
       ),
