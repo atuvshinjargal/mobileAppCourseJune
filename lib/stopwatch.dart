@@ -14,6 +14,8 @@ class _StopWatchState extends State<StopWatch> {
   late Timer timer;
   bool isTicking = false;
   final laps = <double>[];
+  final itemHeight = 60.0;
+  final scrollController = ScrollController();
 
   @override
   void initState() {
@@ -96,6 +98,11 @@ class _StopWatchState extends State<StopWatch> {
                         ),
                         onPressed: () {
                           laps.add(seconds);
+                          scrollController.animateTo(
+                            itemHeight * laps.length,
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeIn,
+                          );
                         },
                         child: Text('Lap'),
                       ),
@@ -105,15 +112,23 @@ class _StopWatchState extends State<StopWatch> {
               ),
             ),
             Expanded(
-                  child: ListView(
-                    children: [
-                      for(double lap in laps)
-                        ListTile(
-                          title: Text('${lap.toStringAsFixed(3)}'),
-                        ),
-                    ],
-                  ),
+              child: Scrollbar(
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemExtent: itemHeight,
+                  itemCount: laps.length,
+                  itemBuilder: (context, index) {
+                    final lap = laps[index];
+                    return ListTile(
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 50), //2 hajuu talaas 50 zai
+                      title: Text('Lap ${index + 1}'),
+                      trailing: Text('${lap.toStringAsFixed(3)}'),
+                    );
+                  },
                 ),
+              ),
+            ),
           ],
         ),
       ),
