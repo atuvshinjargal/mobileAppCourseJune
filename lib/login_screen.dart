@@ -14,9 +14,27 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
 
+  void _validate(){
+    final form = _formkey.currentState;
+    if (!form!.validate()){
+      return;
+    }
+    setState(() {
+      LoggedIn = true;
+      name = _nameController.text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
+      body: Center(
+        child: LoggedIn ? _buildSuccess() : _buildLoginForm(),
+      ),
+    );
   }
 
   Widget _buildSuccess() {
@@ -31,7 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
-  Widget _buildLoginForm(){
+
+  Widget _buildLoginForm() {
     return Form(
       key: _formkey,
       child: Padding(
@@ -41,8 +60,28 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             TextFormField(
               controller: _nameController,
-              
+              decoration: InputDecoration(labelText: 'Runner'),
+              validator: (value) {
+                return value!.isEmpty ? 'Enter the Runner\'s name.' : null;
+              },
             ),
+            TextFormField(
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(labelText: 'Email'),
+              validator: (value) {
+                 if (value!.isEmpty){
+                  return 'Enter the runner\'s email.';
+                 }
+                 final regex = RegExp('[^@]+@[^\.]+\..+');
+                 if (!regex.hasMatch(value)){
+                  return 'Enter the valid email.';
+                 }
+                 return null;
+              },
+            ),
+            SizedBox(height: 20,),
+            ElevatedButton(onPressed: _validate, child: Text('Continue'),),
           ],
         ),
       ),
