@@ -9,6 +9,7 @@ import 'package:profile_app/stopwatch.dart';
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -20,11 +21,17 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: Colors.green,
       ),
-      home: LoginScreen(), 
-      //StopWatch(), 
+      // home: LoginScreen(),
+      routes: {
+        '/': (context) => LoginScreen(),
+        LoginScreen.route: (context) => LoginScreen(),
+        StopWatch.route: (context) => StopWatch(
+              // name: 'ner',
+              // email: 'mail',
+            ),
+      },
+      //StopWatch(),
       //ECommerceScreen(),//DeepTree(),//ProfileScreen(),//FlexScreen(),
     );
   }
 }
-
-

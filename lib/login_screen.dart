@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:profile_app/stopwatch.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const route = '/login';
   const LoginScreen({super.key});
 
   @override
@@ -8,8 +10,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool LoggedIn = false;
+  // bool LoggedIn = false;
   late String name;
+  late String email;
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
@@ -21,8 +24,18 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
     setState(() {
-      LoggedIn = true;
+      //LoggedIn = true;
       name = _nameController.text;
+      email = _emailController.text;
+      // Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(
+      //     builder: (context) => StopWatch(name: name, email: email),
+      //   ),
+      // );
+      Navigator.of(context).pushReplacementNamed(
+        StopWatch.route,
+        arguments: name,
+      );
     });
   }
 
@@ -33,23 +46,24 @@ class _LoginScreenState extends State<LoginScreen> {
         title: Text('Login'),
       ),
       body: Center(
-        child: LoggedIn ? _buildSuccess() : _buildLoginForm(),
+        // child: LoggedIn ? _buildSuccess() : _buildLoginForm(),
+        child: _buildLoginForm(),
       ),
     );
   }
 
-  Widget _buildSuccess() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          Icons.check,
-          color: Colors.orangeAccent,
-        ),
-        Text('Hi $name'),
-      ],
-    );
-  }
+  // Widget _buildSuccess() {
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: [
+  //       Icon(
+  //         Icons.check,
+  //         color: Colors.orangeAccent,
+  //       ),
+  //       Text('Hi $name'),
+  //     ],
+  //   );
+  // }
 
   Widget _buildLoginForm() {
     return Form(
@@ -82,17 +96,23 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
             DropdownButton(
-              value:gender,
+              value: gender,
               items: [
-                DropdownMenuItem(value: 'Male',child: Text('Male'),),
-                DropdownMenuItem(value:'Female',child: Text('Female'),),
+                DropdownMenuItem(
+                  value: 'Male',
+                  child: Text('Male'),
+                ),
+                DropdownMenuItem(
+                  value: 'Female',
+                  child: Text('Female'),
+                ),
               ],
-               onChanged: (String? newValue) {
+              onChanged: (String? newValue) {
                 setState(() {
                   gender = newValue!;
                 });
-               },
-              ),
+              },
+            ),
             SizedBox(
               height: 20,
             ),

@@ -1,8 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:profile_app/platform_alert.dart';
 
 class StopWatch extends StatefulWidget {
+  static const route = '/stopwatch';
+  // String name;
+  // String email;
   const StopWatch({super.key});
+  // StopWatch({super.key, required this.name, required this.email});
 
   @override
   State<StopWatch> createState() => _StopWatchState();
@@ -40,9 +45,11 @@ class _StopWatchState extends State<StopWatch> {
 
   @override
   Widget build(BuildContext context) {
+    String name = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stopwatch'),
+        // title: Text("${widget.name} (${widget.email})"),
+        title: Text('$name'),
       ),
       body: Center(
         child: Column(
@@ -74,6 +81,11 @@ class _StopWatchState extends State<StopWatch> {
                         ),
                         onPressed: () {
                           isTicking = false;
+                          final alert = PlatformAlert(
+                            title: 'Run Completed!',
+                            message: 'Total Run Time is 5',
+                          );
+                          alert.show(context);
                         },
                         child: Text('Stop'),
                       ),
